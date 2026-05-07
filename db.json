@@ -1,0 +1,19 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "titulo": "Coxinha Recheio Frufru",
+      "valor": 8,
+      "imagem": "assets/coxinha.jpg"
+    }
+  ],
+  "carrinho": [
+    {
+      "titulo": "Coxinha Recheio Frufru",
+      "valor": 8,
+      "imagem": "assets/coxinha.jpg",
+      "quantidade": 11,
+      "id": 1
+    }
+  ]
+}
