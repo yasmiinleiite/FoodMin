@@ -11,57 +11,124 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   List listaApi = [];
-  List controladores = []; // corrigido nome
+  List controladores = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0XFFF4EBDC),
+      backgroundColor: const Color(0XFFF4EBDC),
 
       body: Center(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Text("Login", style: TextStyle(color: Color(0XFFFC742C))),
+          child: Container(
+            width: 400,
+            padding: const EdgeInsets.all(30),
 
-              TextField(
-                decoration: InputDecoration(
-                  labelText: "E-mail:",
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0XFFFC742C)),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+
+              children: [
+                const Text(
+                  "Login",
+
+                  style: TextStyle(
+                    color: Color(0XFFFC742C),
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
                   ),
-                  focusedBorder: OutlineInputBorder(),
                 ),
-              ),
 
-              Spaces(),
+                Spaces(),
 
-              TextField(
-                decoration: InputDecoration(
-                  labelText: "Senha:",
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0XFFFC742C)),
+                // email
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: "E-mail:",
+
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0XFFFC742C),
+                      ),
+                    ),
+
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0XFFFC742C),
+                        width: 2,
+                      ),
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(),
                 ),
-              ),
 
-              Spaces(),
+                Spaces(),
 
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Color(0XFFFC742C)),
-                onPressed: () {
-                  Navigator.push(context , 
-                  MaterialPageRoute(builder: (context) => Home()));
-                },
-                child: Text( "Login", style: TextStyle(color: Colors.white))
-              ),
-            ],
-          ), 
+                // senha
+                TextField(
+                  obscureText: true,
+
+                  decoration: InputDecoration(
+                    labelText: "Senha:",
+
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0XFFFC742C),
+                      ),
+                    ),
+
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0XFFFC742C),
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                ),
+
+                Spaces(),
+
+                TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: const Color(0XFFFC742C),
+
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40,
+                      vertical: 15,
+                    ),
+
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+
+                      MaterialPageRoute(
+                        builder: (context) => const Home(),
+                      ),
+                    );
+                  },
+
+                  child: const Text(
+                    "Login",
+
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      );
-    
+      ),
+    );
   }
 }

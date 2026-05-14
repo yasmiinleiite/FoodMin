@@ -1,38 +1,3 @@
-// class ItemCarrinho {
-//   final String titulo;
-//   final double valor;
-//   final String imagem;
-//   int quantidade;
-
-//   ItemCarrinho({
-//     required this.titulo,
-//     required this.valor,
-//     required this.imagem,
-//     required this.quantidade,
-//   });
-// }
-
-// class CarrinhoService {
-//   // Lista que simula a API
-//   static final List<ItemCarrinho> _itens = [];
-
-//   static List<ItemCarrinho> get itens => _itens;
-
-//   static void adicionarItem(ItemCarrinho novoItem) {
-//     final index = _itens.indexWhere((i) => i.titulo == novoItem.titulo);
-
-//     if (index != -1) {
-//       // Se já existe, atualiza a quantidade
-//       _itens[index].quantidade += novoItem.quantidade;
-//     } else {
-//       _itens.add(novoItem);
-//     }
-//   }
-
-//   static double get total =>
-//       _itens.fold(0, (soma, item) => soma + item.valor * item.quantidade);
-// }
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -74,6 +39,13 @@ class CarrinhoService {
     final response = await http.get(Uri.parse('$_baseUrl/carrinho'));
     final List data = jsonDecode(response.body);
     return data.map((e) => ItemCarrinho.fromJson(e)).toList();
+  }
+
+  static Future<void> atualizarItem(ItemCarrinho item) async {
+  await http.put(
+    Uri.parse('$_baseUrl/carrinho/${item.id}'),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode(item.toJson()));
   }
 
   static Future<void> adicionarItem(ItemCarrinho novoItem) async {

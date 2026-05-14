@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ProdutoItem {
-  final int id;
+  final String id;      
   final String titulo;
   final double valor;
   final String imagem;
@@ -15,19 +15,20 @@ class ProdutoItem {
   });
 
   factory ProdutoItem.fromJson(Map<String, dynamic> json) => ProdutoItem(
-    id: json['id'],
-    titulo: json['titulo'],
-    valor: (json['valor'] as num).toDouble(),
-    imagem: json['imagem'],
+    id: json['idMeal'],           
+    titulo: json['strMeal'],      
+    valor: 8.00,                  
+    imagem: json['strMealThumb'], 
   );
 }
 
 class ProdutosService {
-  static const String _baseUrl = 'http://localhost:3000';
+  static const String _baseUrl = 'https://www.themealdb.com/api/json/v1/1'; 
 
   static Future<List<ProdutoItem>> buscarProdutos() async {
-    final response = await http.get(Uri.parse('$_baseUrl/produtos'));
-    final List data = jsonDecode(response.body);
-    return data.map((e) => ProdutoItem.fromJson(e)).toList();
+    final response = await http.get(Uri.parse('$_baseUrl/search.php?s='));   
+    final data = jsonDecode(response.body);
+    final List produtos = data['meals'] ?? [];
+    return produtos.map((e) => ProdutoItem.fromJson(e)).toList();
   }
 }
