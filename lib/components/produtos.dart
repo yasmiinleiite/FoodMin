@@ -82,9 +82,6 @@ class Produto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('imagem: $imagem');
-    print('starts with http: ${imagem.startsWith('http')}');
-
     return Card(
       child: Container(
         width: 400,
